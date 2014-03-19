@@ -49,10 +49,6 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         ));
 
         $expectedService = new \OAuth2\Server($adapter, array('enforce_state' => true, 'allow_implicit' => false, 'access_lifetime' => 3600));
-        $expectedService->addGrantType(new ClientCredentials($adapter));
-        $expectedService->addGrantType(new AuthorizationCode($adapter));
-        $expectedService->addGrantType(new UserCredentials($adapter));
-        $expectedService->addGrantType(new RefreshToken($adapter));
 
         $service = $this->factory->createService($this->services);
         $this->assertInstanceOf('OAuth2\Server', $service);
@@ -74,10 +70,6 @@ class OAuth2ServerFactoryTest extends AbstractHttpControllerTestCase
         ));
 
         $expectedService = new \OAuth2\Server($adapter, array('enforce_state' => false, 'allow_implicit' => true, 'access_lifetime' => 12000));
-        $expectedService->addGrantType(new ClientCredentials($adapter));
-        $expectedService->addGrantType(new AuthorizationCode($adapter));
-        $expectedService->addGrantType(new UserCredentials($adapter));
-        $expectedService->addGrantType(new RefreshToken($adapter));
 
         $service = $this->factory->createService($this->services);
         $this->assertInstanceOf('OAuth2\Server', $service);

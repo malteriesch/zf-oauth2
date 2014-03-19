@@ -44,18 +44,7 @@ class OAuth2ServerFactory implements FactoryInterface
             'allow_implicit'  => $allowImplicit,
             'access_lifetime' => $accessLifetime
         ));
-
-        // Add the "Client Credentials" grant type (it is the simplest of the grant types)
-        $server->addGrantType(new ClientCredentials($storage));
-
-        // Add the "Authorization Code" grant type (this is where the oauth magic happens)
-        $server->addGrantType(new AuthorizationCode($storage));
-
-        // Add the "User Credentials" grant type
-        $server->addGrantType(new UserCredentials($storage));
-
-        // Add the "Refresh Token" grant type
-        $server->addGrantType(new RefreshToken($storage));
+        
 
         return $server;
     }

@@ -50,10 +50,18 @@ return array(
         ),
     ),
     'service_manager' => array(
+        'invokables' => array(
+            'ZF\OAuth2\Factory\OAuth2ServerDelegatorFactoryAllGrantTypes' => 'ZF\OAuth2\Factory\OAuth2ServerDelegatorFactoryAllGrantTypes'
+        ),
         'factories' => array(
-            'ZF\OAuth2\Adapter\PdoAdapter'   => 'ZF\OAuth2\Factory\PdoAdapterFactory',
-            'ZF\OAuth2\Adapter\MongoAdapter' => 'ZF\OAuth2\Factory\MongoAdapterFactory',
-            'ZF\OAuth2\Service\OAuth2Server' => 'ZF\OAuth2\Factory\OAuth2ServerFactory'
+            'ZF\OAuth2\Adapter\PdoAdapter'                       => 'ZF\OAuth2\Factory\PdoAdapterFactory',
+            'ZF\OAuth2\Adapter\MongoAdapter'                     => 'ZF\OAuth2\Factory\MongoAdapterFactory',
+            'ZF\OAuth2\Service\OAuth2Server'                     => 'ZF\OAuth2\Factory\OAuth2ServerFactory',
+        ),
+        'delegators' => array(
+            'ZF\OAuth2\Service\OAuth2Server' => array(
+                 'ZF\OAuth2\Factory\OAuth2ServerDelegatorFactoryAllGrantTypes'
+            ),
         )
     ),
     'view_manager' => array(
